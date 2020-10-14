@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Articles</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="wrapper">
+            <h1><a href="{% url 'articles:article-list' %}"><img src="{% static 'logo.png' %}" alt="djangonautic" /></a></h1>
+      </header>
+      <div class="wrapper">
+          {% block content %}
+          {% endblock content %}
+      </div>
+    </div>
+  </body>
+</html>
