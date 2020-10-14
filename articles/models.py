@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Article(models.Model):
@@ -7,12 +8,11 @@ class Article(models.Model):
     slug = models.SlugField()
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
+    thumb = models.ImageField(default='default.png', blank=True)
+    author  = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.title
 
     def snippet(self):
         return f'{self.body[:50]}...'
-
-    # def get_absolute_url(self):
-    #     return reverse("articles:article-detail", kwargs = { "slug": self.slug })
