@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'q1d)3-+8aj&d+$0w592cpm27(c4c!pdg2zr0b8hupbd@5umhph'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['blog-playlist.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -41,10 +41,12 @@ INSTALLED_APPS = [
     # Own Apps
     'articles',
     'accounts',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -127,6 +129,19 @@ STATICFILES_DIRS = (
     BASE_DIR / 'assets',
 )
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'soth.sambath19@kit.edu.kh'
+EMAIL_HOST_PASSWORD = 'Sambath@Soth123123123'
+DEFAULT_FROM_EMAIL = 'soth.sambath19@kit.edu.kh'
